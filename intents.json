@@ -1,0 +1,35 @@
+{
+    "intents": [
+      {
+        "tag": "greeting",
+        "patterns": ["Merhaba", "Nasılsınız?", "Orada kimse var mı?", "Selam", "İyi günler", "Naber", "Hey", "merhabalar"],
+        "responses": ["Merhaba!", "Seni tekrar görmek güzel!", "Merhaba, nasıl yardımcı olabilirim?"],
+        "context_set": ""
+      },
+      {
+        "tag": "goodbye",
+        "patterns": ["Görüşürüz", "Sonra görüşürüz", "Hoşça kal", "Ayrılıyorum", "İyi günler", "bye", "hoşça kal", "görüşürüz"],
+        "responses": ["Seni görmek üzücü :(", "Sonra konuşuruz", "Hoşça kal!"],
+        "context_set": ""
+      },
+      {
+        "tag": "programming",
+        "patterns": ["Programlama nedir?", "Kodlama nedir?", "Programlama hakkında bilgi verir misiniz?", "Kodlama hakkında bilgi verir misiniz?", "Yazılım geliştirme nedir?"],
+        "responses": ["Programlama, kodlama veya yazılım geliştirme, görevleri otomatikleştirmek için bilgisayar kodu yazmayı ifade eder."],
+        "context_set": ""
+      },
+      {
+        "tag": "resource",
+        "patterns": ["Nereden kod öğrenebilirim?", "Kod öğrenmenin en iyi yolu nedir?", "Nasıl programlama öğrenebilirim?", "İyi programlama kaynakları", "İyi kodlama kaynakları önerebilir misiniz?"],
+        "responses": ["NeuralNine YouTube kanalına ve The Python Bible serisine (7'si bir arada) göz atın."],
+        "context_set": ""
+      },
+      {
+        "tag": "stocks",
+        "patterns": ["Benim hisse senetlerim neler?", "Hangi hisse senetlerine sahibim?", "Hisse senedi portföyümü göster"],
+        "responses": ["İşte hisse senetleriniz!"],
+        "context_set": ""
+      }
+    ]
+  }
+  
