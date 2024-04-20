@@ -1,0 +1,5 @@
+requests        # HTTP isteği yollamak için
+beautifulsoup4  # HTML veriyi okumak için
+flask           # Web uygulaması geliştirme framework'ü
+flask_cors      # CORS ayarlarını yapmak için
+openai==0.28    # ChatGPT'yi kodla kullanmak için
