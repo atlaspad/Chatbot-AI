@@ -11,6 +11,42 @@ try:
 except Exception as e:
     print(f"MongoDB bağlantısı oluşturulurken hata oluştu: {str(e)}")
 
+# Konu başlıkları ve cevapları
+topic_responses = {
+    "blockchain": "",
+    "yapay zeka": "",
+    "yazılım": "",
+    "makine öğrenmesi": "",
+    "derin öğrenme": "",
+    "software": "",
+    "blokzincir": "",
+    "zero knowledge": "",
+    "artificial intelligence": "",
+    "machine learning": "",
+    "deep learning": "",
+    "mina protocol": "",
+    "launchpad": "",
+}
+
+def get_response(message):
+    for topic, response in topic_responses.items():
+        if topic in message.lower():
+            if response:
+                return response
+            else:
+                # OpenAI'den cevap al
+                try:
+                    messages = [{"role": "user", "content": message}]
+                    chat = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=messages)
+                    reply = chat.choices[0].message.content
+                    topic_responses[topic] = reply  # Cevabı önbelleğe al
+                    return reply
+                except Exception as e:
+                    print(f"OpenAI'den cevap alınırken hata oluştu: {str(e)}")
+                    return "Üzgünüm, şu anda cevap veremiyorum."
+
+    return "Üzgünüm, bu konuda size yardımcı olamam."
+
 def kaydetSoruCevap(soru, cevap):
     try:
         # Soru ve cevapları veritabanına kaydedin
@@ -25,26 +61,24 @@ def kaydetSoruCevap(soru, cevap):
 
 def chatCevapAl(message):
     try:
-        # "atlaspad" kelimesi geçiyorsa özel bir yanıt döndür
+        # Özel cevaplar
         if "atlaspad" in message.lower():
-            return "Atlaspad, Mina Protocol'da kullanılan ZK-Launchpad teknolojisidir."
-        if "atlaspad nedir" in message.lower():
-            return "birden fazla blok zincirinde güvenli ve özel işlemlere olanak sağlamak için sıfır bilgi kanıtlarını kullanan ilk ve tek güvenilir Çapraz Zincir ZK Launchpad'i tanıtıyor. Bu son teknoloji platform, kullanıcıların şunları yapmasına olanak tanıyarak DeFi'deki acil gizlilik sorunlarına ve yüksek işlem maliyetlerine çözüm getiriyor"
+            if "atlaspad nedir" in message.lower():
+                return "Atlaspad, Mina Protocol'da kullanılan ZK-Launchpad teknolojisidir. Birden fazla blok zincirinde güvenli ve özel işlemlere olanak sağlamak için sıfır bilgi kanıtlarını kullanan ilk ve tek güvenilir Çapraz Zincir ZK Launchpad'i tanıtıyor. Bu son teknoloji platform, kullanıcıların şunları yapmasına olanak tanıyarak DeFi'deki acil gizlilik sorunlarına ve yüksek işlem maliyetlerine çözüm getiriyor."
+            elif "atlaspad neden tasarlandı" in message.lower():
+                return "Bu başlatma paneli, kullanıcılara varlıkları zincirler arasında gizli ve verimli bir şekilde taşıma özgürlüğünü sağlamak ve gizliliğin ve zincirler arası işlevselliğin sorunsuz bir şekilde bir arada var olduğu DeFi alanında yeni bir paradigmayı teşvik etmek için tasarlandı."
+            elif "atlaspad hakkında bilgi ver" in message.lower():
+                return "Günümüzün kripto para ekosisteminde, yatırımcılar arasında fırlatma rampalarının kullanımı giderek yaygınlaşarak çapraz ölçekli kripto varlık işlemlerini kolaylaştırıyor. Başlatma rampaları genellikle tek bir ağ tarafından desteklenen merkezi veya merkezi olmayan yapılardır. Kripto-ekonomik üçlemeye göre, eğer bir fırlatma rampası merkezileştirilirse güvenlik pahasına hız kazanabilir; merkezden dağıtılmışsa güvenilirlik sunar ancak işlem hızını olumsuz yönde etkileyebilir. Herhangi bir fırlatma rampası ve kullanıcıları, özellikle de yatırımcılar için temel sorunlar, güvenlik ve gizlilik etrafında dönüyor. Doğrulanmamış işlemler için tercih edilmelerine rağmen fırlatma rampaları, kripto finans sektöründe suiistimallere maruz kalıyor. Ayrıca bunlar doğrulandığında orantısız merkezileşme ve veri güvenliğinin istismar edilmesi gibi sorunlar ortaya çıkıyor. Üstelik MINA ağında herhangi bir zk-Launchpad'in bulunmaması ve MINA'nın auro cüzdanı dışında EVM uyumluluğunun stabil token eksikliği nedeniyle daha az tercih edilmesi, bizi tüm bu sorunları çözecek karar almaya yöneltti. . Bu sorunları geliştirici ekibimiz, deneyimli kadromuz ve tabii ki (zkproof) ile ele alarak, gerçek anlamda çözüm olarak gördüğümüz MINA ağına kullanıcı katılımını arttırırken, tamamen doğrulanabilen ve anonim olabilen bir sistem kurmayı hedefliyoruz.  Atlaspad bir projeden daha fazlasıdır; gizliliğin ölçeklenebilirlik ve birlikte çalışabilirlikle buluştuğu, DeFi'nin geleceğine adanmış, büyüyen bir ekosistemdir. Yolculuğumuz sürekli yenilik, işbirlikçi gelişim ve topluluğumuzun sarsılmaz desteğiyle güçleniyor."
+            else:
+                return "Atlaspad hakkında ne sormak istediğinizi belirtir misiniz?"
 
         # Diğer belirli içeriklere cevap ver
-        if "blockchain" not in message and "yapay zeka" not in message and "yazılım" not in message and "makine öğrenmesi" not in message and "derin öğrenme" not in message:
-            return "Üzgünüm, bu konuda size yardımcı olamam."
-
-        messages = [
-            {"role": "user", "content": message}
-        ]
-        chat = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=messages)
-        reply = chat.choices[0].message.content
-
+        response = get_response(message)
+        
         # Soru ve cevabı veritabanına kaydet
-        kaydetSoruCevap(message, reply)
+        kaydetSoruCevap(message, response)
 
-        return reply
+        return response
     except Exception as e:
         print(f"ChatCevapAl işlevinde hata oluştu: {str(e)}")
         return None
