@@ -7,9 +7,11 @@ Clone the project and move it to your local location:<br>
 
 # Step 2
 Now enter the necessary command to run the project: <br>
-``` python <your_file_name.py>``` <br>
-or <br>
-``` python3 <your_file_name.py> ``` 
+``` docker build -t < your docker username / project name >. ``` <br>
+then <br>
+``` docker run -p 8080:8080 -e ENVIRONMENT=development --rm < your docker username / project name > . => This is used for developer port``` 
+and <br>
+``` docker run -p 8080:8080 -e ENVIRONMENT=development --rm < your docker username / project name > .``` 
 
 # Architecture
 <img width="944" alt="chatbot" src="https://github.com/atlaspad/Chatbot-AI/assets/95518574/e25ded0a-fa73-4bdc-86df-5fd6bbdc3758">
