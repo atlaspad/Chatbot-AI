@@ -9,7 +9,7 @@ Clone the project and move it to your local location:<br>
 Now enter the necessary command to run the project: <br>
 ``` docker build -t < your docker username / project name >. ``` <br>
 then <br>
-``` docker run -p 8080:8080 -e ENVIRONMENT=development --rm < your docker username / project name > . => This is used for developer port``` 
+``` docker run -p 8080:8080 -e ENVIRONMENT=development --rm < your docker username / project name > . => This is used for developer port```  <br>
 and <br>
 ``` docker run -p 8080:8080 -e ENVIRONMENT=development --rm < your docker username / project name > .``` 
 
