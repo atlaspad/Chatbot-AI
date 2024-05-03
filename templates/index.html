@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AtlasBot</title>
+  <title>Atlaspad AI ChatBot</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -15,7 +15,7 @@
       display: grid;
       grid-template-columns: 300px 1fr;
       grid-template-rows: auto; /* Arka plan resmi otomatik olarak genişlemeli */
-      background-image: url("/static/images/chat3.png"); /* Arka plan resmi */
+      background-image: url("/static/images/atlasBackground.png"); /* Arka plan resmi */
       background-size: cover; /* Resmi kaplayacak şekilde ayarla */
       background-repeat: no-repeat; /* Resmin tekrarını engelle */
       background-attachment: fixed; /* Resmi sabit tut */
@@ -37,7 +37,7 @@
     }
 
     .chat-container {
-      background-image: url("/static/images/atlas3.png");
+      background-image: url("/static/images/atlasBackground.png");
       background-color: cover;
       padding: 20px;
       border: 1px solid #ccc;
@@ -51,7 +51,7 @@
 
 
     .chat-history {
-      background-image: url("/static/images/atlas3.png");
+      background-image: url("/static/images/atlasBackground.png");
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -89,7 +89,7 @@
     .answer-frame {
       align-self: flex-start;
       background-color: #38668f;
-      color: black;
+      color: white;
     }
 
     .previous-question {
@@ -176,12 +176,12 @@
 </head>
 <body>
   <div class="my-container">
-    <img src="/static/images/atlas.png" class="logo-image" alt="Logo">
+    <img src="/static/images/Ai_logo.png" class="logo-image" alt="Logo">
     <div>
-      <button id="new-chat-btn" class="chat-btn" onclick="startNewChat()"><i class="fas fa-plus"></i> Yeni Sohbet</button>
-      <button class="remove-btn" onclick="removeQuestions()">Sil</button>
+      <button id="new-chat-btn" class="chat-btn" onclick="startNewChat()"><i class="fas fa-plus"></i> New Chat</button>
+      <button class="remove-btn" onclick="removeQuestions()">Delete</button>
     </div>
-    <p>Önceki Sorular</p>
+    <p>Last Chats</p>
     <div id="previous-questions">
       <!-- Önceki sorular burada listelenecek -->
     </div>
@@ -195,8 +195,10 @@
 
   <div class="user-input-container">
     <div class="user-input">
-      <input type="text" id="question" class="question-input" placeholder="Sorunuzu yazın..." oninput="inputChange()" onkeypress="enterKontrolEt(event)">
+      <input type="text" id="question" class="question-input" placeholder="Message AtlasBot..." oninput="inputChange()" onkeypress="enterKontrolEt(event)">
       <button class="submit-btn chat-btn" id="submit-btn" onclick="mesajGonder()"><i class="fas fa-check"></i></button>
+      <img src="/static/images/greek-god-atlas-chatbot_1.png" alt="Resmin Açıklaması" style="width: 200px; position: absolute; bottom: 20px; right: 20px;">
+
     </div>
   </div>
 
